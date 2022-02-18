@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo -i
-apt update -y && apt upgrade -y
+apt update -y
 wget https://repo.zabbix.com/zabbix/5.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.4-1+ubuntu20.04_all.deb
 dpkg -i zabbix-release_5.4-1+ubuntu20.04_all.deb
 apt update -y
@@ -17,4 +17,5 @@ echo 'Include=/etc/zabbix/zabbix_agentd.d/*.conf' >> /etc/zabbix/zabbix_agentd.c
 systemctl restart zabbix-agent
 systemctl enable zabbix-agent
 apt install firewalld -y
-firewall-cmd --add-port=10050/tcp
+firewall-cmd --permanent --add-port=10050/tcp
+firewall-cmd --reload
